@@ -26,6 +26,7 @@ void HashMap::Clear()
 HashMap::HashMap()
 {
     table = nullptr;
+    count = 0;
 }
 
 HashMap::~HashMap()
