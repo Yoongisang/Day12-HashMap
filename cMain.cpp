@@ -29,7 +29,7 @@ int main()
 	cout << "삭제할 값의 key 값: ";
 	cin >> key;
 	H.Remove(key);
-
+	
 	//GetValue
 	cout << "출력할 값의 key 값: ";
 	cin >> key;
