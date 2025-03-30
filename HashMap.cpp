@@ -1,6 +1,6 @@
 #include "HashMap.h"
 
-void HashMap::Add(int _key, int _value)
+void HashMap::Add(int key, int value)
 {
     if (Count() == TABLE_SIZE)
     {
@@ -10,9 +10,9 @@ void HashMap::Add(int _key, int _value)
     else
     {
         Node* NewNode = new Node;
-        NewNode->key = _key;
-        NewNode->data = _value;
-        int i = _key % TABLE_SIZE;
+        NewNode->key = key;
+        NewNode->data = value;
+        int i = key % TABLE_SIZE;
         if (table[i] == nullptr)
         {
             table[i] = NewNode;
@@ -26,18 +26,17 @@ void HashMap::Add(int _key, int _value)
             }
             table[i] = NewNode;
         }
-        count++;
     }
     
 }
 
-int HashMap::GetValue(int _key)
+int HashMap::GetValue(int key)
 {
     for (int i = 0; i < TABLE_SIZE; i++)
     {
-        if (_key == table[i]->key)
+        if (table[i] != nullptr && key == table[i]->key)
         {
-            cout << _key << "의 Value값: " << table[i]->data << " 출력" << endl;
+            cout << key << "의 Value값: " << table[i]->data << " 출력" << endl;
             return table[i]->data;
         }
     }
@@ -45,14 +44,14 @@ int HashMap::GetValue(int _key)
     return -99;
 }
 
-void HashMap::Remove(int _key)
+void HashMap::Remove(int key)
 {
     for (int i = 0; i < TABLE_SIZE; i++)
     {
-        if (_key == table[i]->key)
+        if (table[i] != nullptr && key == table[i]->key)
         {
             delete table[i];
-            table[i] == nullptr;
+            table[i] = nullptr;
         }
     }
 }
@@ -85,13 +84,11 @@ void HashMap::Clear()
 
 HashMap::HashMap()
 {
-    Node* slot[TABLE_SIZE];
-    table = slot;
+    table = new Node*[TABLE_SIZE];
     for (int i = 0; i < TABLE_SIZE; i++)
     {
         table[i] = nullptr;
     }
-    count = 0;
 }
 
 HashMap::~HashMap()

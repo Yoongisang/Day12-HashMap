@@ -14,7 +14,7 @@ struct  Node
 class HashMap
 {
 private:
-	Node** table;
+	Node** table = nullptr;
 public:
 	void Add(int key, int value);
 	int GetValue(int key);
